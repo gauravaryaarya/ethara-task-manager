@@ -8,8 +8,7 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "ignoreDeprecations": ["5107"]
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*"]
 }
