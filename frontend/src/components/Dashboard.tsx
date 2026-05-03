@@ -213,6 +213,8 @@ export default function Dashboard() {
         </div>
 
         <div className="task-grid">
+          
+          {/* 1. TASK ALLOCATION FORM */}
           {view === 'tasks' && showTaskForm && (
             <div className="task-card" style={{gridColumn:'1/-1'}}>
               <h2 style={{fontSize:'16px', marginBottom:'20px'}}>TASK ALLOCATION</h2>
@@ -240,6 +242,7 @@ export default function Dashboard() {
             </div>
           )}
 
+          {/* 2. TASKS LIST */}
           {view === 'tasks' && filteredTasks.map(t => (
             <div key={t._id} className="task-card">
               <div style={{display:'flex', justifyContent:'space-between', marginBottom:'16px'}}>
@@ -270,6 +273,26 @@ export default function Dashboard() {
               </div>
             </div>
           ))}
+
+          {/* 3. TEAM MANAGEMENT LIST (MOVED OUTSIDE) */}
+          {view === 'users' && users.map(u => (
+            <div key={u._id} className="task-card">
+              <div style={{display:'flex', justifyContent:'space-between', marginBottom:'16px'}}>
+                <span className="badge" style={{color: u.role === 'Admin' ? '#f0f' : '#0ff', borderColor: u.role === 'Admin' ? '#f0f' : '#0ff'}}>
+                  {u.role}
+                </span>
+                <span style={{fontSize:'10px', color:'#333'}}>ID_{u._id.slice(-4)}</span>
+              </div>
+              <h3 style={{fontSize:'18px', fontWeight:600, marginBottom:'12px'}}>{u.name.toUpperCase()}</h3>
+              <div style={{padding:'12px', background:'#050505', borderLeft:'2px solid #222'}}>
+                <p style={{fontSize:'11px', color:'#444', fontWeight:700, marginBottom:'4px'}}>SYSTEM ACCESS</p>
+                <p style={{fontSize:'13px', color:'#bbb'}}>
+                  {u.role === 'Admin' ? 'Full Control (Workspace & Tasks)' : 'Restricted (Task Updates Only)'}
+                </p>
+              </div>
+            </div>
+          ))}
+
         </div>
       </div>
     </div>
